@@ -4,8 +4,12 @@ DEFAULT_GOAL 		:= help
 SHELL 				= /bin/bash
 PROJECT_NAME        = $(shell basename $(shell pwd) | tr '[:upper:]' '[:lower:]')
 
+args = $(filter-out $@,$(MAKECMDGOALS))
 
-.PHONY: up stop stan test csfix
+.PHONY: up stop stan test csfix artisan build coverage
+
+build: ## avvia l'ambiente di sviluppo
+		docker-compose run --rm laravel.test sail composer install
 
 stop: ## ferma sail
 		@./vendor/bin/sail stop
@@ -22,6 +26,15 @@ csfix: ## avvia php-cs-fixer
 test: ## avvia la batteria di test
 		@./vendor/bin/sail artisan test
 
+coverage: export SAIL_XDEBUG_MODE = coverage
+coverage: ## avvia la batteria di test con coverage
+		@docker-compose run --rm -e SAIL_XDEBUG_MODE laravel.test sail ./vendor/bin/pest --coverage
+
+artisan: ## esegue artisan
+		@./vendor/bin/sail artisan $(call args)
+
+sail: ## esegue sail
+		@./vendor/bin/sail $(call args)
 
 .PHONY: help
 help: ## Mostra questo messaggio

@@ -8,5 +8,5 @@ use App\DTO\HappinessDTO;
 
 interface DoSomethingInterface
 {
-    public function makeMeHappy(HappinessDTO $dto): bool;
+    public function makeMeHappy(HappinessDTO $dto): string;
 }

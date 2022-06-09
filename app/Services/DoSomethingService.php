@@ -9,11 +9,11 @@ use App\DTO\HappinessDTO;
 
 class DoSomethingService implements DoSomethingInterface
 {
-    public function makeMeHappy(HappinessDTO $dto): bool
+    public function makeMeHappy(HappinessDTO $dto): string
     {
         return match ($dto->getHappinessValue()) {
-            'happy' => true,
-            default => false
+            1,2,3,4,5 => 'sad',
+            default => 'happy'
         };
     }
 }

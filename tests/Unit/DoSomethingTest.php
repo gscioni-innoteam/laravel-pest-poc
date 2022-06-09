@@ -8,11 +8,11 @@ use App\Services\DoSomethingService;
 test('should be happy', function () {
     $service = new DoSomethingService();
 
-    expect($service->makeMeHappy(HappinessDTO::create('happy')))->toBeTrue();
+    expect($service->makeMeHappy(HappinessDTO::create(7)))->toBe('happy');
 });
 
 test('should be not happy', function () {
     $service = new DoSomethingService();
 
-    expect($service->makeMeHappy(HappinessDTO::create('sad')))->toBeFalse();
+    expect($service->makeMeHappy(HappinessDTO::create(3)))->toBe('sad');
 });

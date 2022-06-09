@@ -16,6 +16,15 @@
         <include>
             <directory suffix=".php">./app</directory>
         </include>
+        <exclude>
+            <file>app/Http/Middleware/Authenticate.php</file>
+            <file>app/Http/Middleware/RedirectIfAuthenticated.php</file>
+            <file>app/Http/Middleware/TrustHosts.php</file>
+            <file>app/Providers/BroadcastServiceProvider.php</file>
+        </exclude>
+        <report>
+            <html outputDirectory="tests/reports/coverage"/>
+        </report>
     </coverage>
     <php>
         <env name="APP_ENV" value="testing"/>

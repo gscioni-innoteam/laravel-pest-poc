@@ -21,4 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('happiness/{value}', [SomethingController::class, 'index']);
+Route::get('happiness/{value}', [SomethingController::class, 'index'])->where('value', '[0-9]+');;

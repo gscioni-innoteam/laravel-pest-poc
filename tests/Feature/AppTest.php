@@ -15,17 +15,17 @@ it('has wrong page', function () {
 });
 
 it('should be happy', function () {
-    $response = $this->get('/api/happiness/happy');
+    $response = $this->get('/api/happiness/7');
 
     $response->assertStatus(200);
     expect($response->getContent())->toBeJson()
-        ->and($response->getContent())->json()->happy->toBe(true);
+        ->and($response->getContent())->json()->status->toBe('happy');
 });
 
 it('should be sad', function () {
-    $response = $this->get('/api/happiness/sad');
+    $response = $this->get('/api/happiness/3');
 
     $response->assertStatus(200);
     expect($response->getContent())->toBeJson()
-        ->and($response->getContent())->json()->happy->toBe(false);
+        ->and($response->getContent())->json()->status->toBe('sad');
 });

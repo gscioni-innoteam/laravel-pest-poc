@@ -10,10 +10,10 @@ use Illuminate\Http\JsonResponse;
 
 class SomethingController extends Controller
 {
-    public function index(string $value, DoSomethingInterface $service): JsonResponse
+    public function index(int $value, DoSomethingInterface $service): JsonResponse
     {
         return response()->json([
-            'happy' => $service->makeMeHappy(HappinessDTO::create($value)),
+            'status' => $service->makeMeHappy(HappinessDTO::create($value)),
         ]);
     }
 }
